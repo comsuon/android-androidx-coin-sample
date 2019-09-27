@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="3dp"
+    app:cardBackgroundColor="@color/colorPrimary"
+    app:cardCornerRadius="@dimen/dp_4">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imv_coin_symbol"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="@dimen/dp_16" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_coin_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@id/imv_coin_symbol"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textSize="@dimen/font_22" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_coin_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_coin_name"
+            android:layout_toEndOf="@id/imv_coin_symbol"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/font_18" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
