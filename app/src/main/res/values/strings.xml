@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CryptoCoinSample</string>
+
+    <string name="currency_holder">%s USD</string>
 </resources>
