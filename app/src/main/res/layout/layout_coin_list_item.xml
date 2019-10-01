@@ -46,9 +46,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_coin_name"
                 android:layout_toEndOf="@id/imv_coin_symbol"
-                android:text="@{@string/currency_holder(data.quote.uSD.price)}"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="@dimen/font_18" />
+                android:textSize="@dimen/font_18"
+                app:coinPrice="@{data.quote.uSD.price}" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </layout>

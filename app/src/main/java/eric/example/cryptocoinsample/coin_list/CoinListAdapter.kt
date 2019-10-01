@@ -25,11 +25,11 @@ class CoinListAdapter : ListAdapter<Coin, CoinListAdapter.CoinViewHolder>(CoinDi
 
     override fun onBindViewHolder(holder: CoinViewHolder, position: Int) {
         val item = getItem(position)
-        holder?.bindView(item)
+        holder.bindView(item)
     }
 
 
-    class CoinViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CoinViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindView(item: Coin) {
             binding.setVariable(BR.data, item)
             binding.executePendingBindings()
