@@ -1,26 +1,35 @@
 package eric.example.cryptocoinsample.coin_list
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import eric.example.cryptocoinsample.base_components.DataWrapper
+import eric.example.cryptocoinsample.data.Coin
+import eric.example.cryptocoinsample.data.CoinRepository
 
 class CoinListViewModel(private val coinRepository: CoinRepository) : ViewModel() {
-    private var _coinList: LiveData<DataWrapper<CoinListResponse>>
-    val coinList = MediatorLiveData<DataWrapper<CoinListResponse>>()
+    var coinList: LiveData<PagedList<Coin>>
+    private val coinPagedDataSourceFactory: CoinPagedDataSourceFactory =
+        CoinPagedDataSourceFactory(
+            coinRepository,
+            viewModelScope
+        )
 
     init {
-        _coinList = coinRepository.fetchCoinList()
-        coinList.addSource(_coinList) {
-            coinList.value = it
-        }
+        val config = PagedList.Config.Builder()
+            .setPageSize(CoinRepository.PAGE_SIZE)
+            .setInitialLoadSizeHint(CoinRepository.PAGE_SIZE / 2)
+            .setEnablePlaceholders(false)
+            .build()
+
+        coinList = LivePagedListBuilder<Int, Coin>(coinPagedDataSourceFactory, config).build()
     }
 
+    fun getState(): LiveData<DataWrapper.Status> = Transformations.switchMap(coinPagedDataSourceFactory.coinDataSource, CoinPagedDataSource::state)
+
+    fun getError(): LiveData<String> = Transformations.switchMap(coinPagedDataSourceFactory.coinDataSource, CoinPagedDataSource::error)
+
     fun refreshData() {
-        coinList.removeSource(_coinList)
-        _coinList = coinRepository.fetchCoinList()
-        coinList.addSource(_coinList) {
-            coinList.value = it
-        }
+        coinPagedDataSourceFactory.coinDataSource.value?.invalidate()
     }
 }
