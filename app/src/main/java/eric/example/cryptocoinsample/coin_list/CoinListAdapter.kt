@@ -15,6 +15,9 @@ const val COIN_URL = "https://s2.coinmarketcap.com/static/img/coins/64x64/"
 const val COIN_URL_SUFFIX = ".png"
 
 class CoinListAdapter : PagedListAdapter<Coin, CoinListAdapter.CoinViewHolder>(CoinDiffUtils()) {
+
+    var onItemClickListener: ((Coin) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding: ViewDataBinding =
@@ -29,8 +32,14 @@ class CoinListAdapter : PagedListAdapter<Coin, CoinListAdapter.CoinViewHolder>(C
     }
 
 
-    class CoinViewHolder(private val binding: ViewDataBinding) :
+    inner class CoinViewHolder(private val binding: ViewDataBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener{
+                getItem(adapterPosition)?.let { it1 -> onItemClickListener?.invoke(it1) }
+            }
+        }
+
         fun bindView(item: Coin?) {
             binding.setVariable(BR.data, item)
             binding.executePendingBindings()

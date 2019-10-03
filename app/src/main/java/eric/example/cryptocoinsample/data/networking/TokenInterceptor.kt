@@ -1,4 +1,4 @@
-package eric.example.cryptocoinsample.data
+package eric.example.cryptocoinsample.data.networking
 
 import okhttp3.Interceptor
 import okhttp3.Response

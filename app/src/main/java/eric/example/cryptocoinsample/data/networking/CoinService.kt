@@ -1,4 +1,4 @@
-package eric.example.cryptocoinsample.data
+package eric.example.cryptocoinsample.data.networking
 
 import eric.example.cryptocoinsample.coin_list.CoinListResponse
 import retrofit2.Response

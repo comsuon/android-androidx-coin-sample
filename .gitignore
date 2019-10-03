@@ -14,3 +14,4 @@
 .gradle/buildOutputCleanup/cache.properties
 .gradle/buildOutputCleanup/outputFiles.bin
 .gradle/vcs-1/gc.properties
+.idea/

@@ -1,7 +1,7 @@
 package eric.example.cryptocoinsample.base_components
 
-import eric.example.cryptocoinsample.data.CoinService
-import eric.example.cryptocoinsample.data.TokenInterceptor
+import eric.example.cryptocoinsample.data.networking.CoinService
+import eric.example.cryptocoinsample.data.networking.TokenInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

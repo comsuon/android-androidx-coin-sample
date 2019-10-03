@@ -2,6 +2,8 @@ package eric.example.cryptocoinsample.data
 
 import eric.example.cryptocoinsample.base_components.BaseRepository
 import eric.example.cryptocoinsample.base_components.NetworkingClient
+import eric.example.cryptocoinsample.data.networking.CoinRemoteDataSource
+import eric.example.cryptocoinsample.data.networking.CoinService
 
 class CoinRepository : BaseRepository() {
     companion object {
